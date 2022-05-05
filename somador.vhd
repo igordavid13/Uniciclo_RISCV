@@ -11,7 +11,7 @@ entity somador is
 		saida: out std_logic_vector(31 downto 0)
 	);
 
-end entity;
+end somador;
 
 architecture a of somador is
 begin
