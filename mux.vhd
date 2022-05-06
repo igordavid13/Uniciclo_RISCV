@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.riscv_pkg.all;
 
 entity MUX is
 
@@ -16,7 +17,7 @@ architecture a of MUX is
 	
 	begin
     	proc_mux : process (s, entrada_A, entrada_B) begin
-          if (s = '1') then
+          if (s = '0') then
               saida <= entrada_A;
           else
               saida <= entrada_B;

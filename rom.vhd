@@ -2,16 +2,18 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 use std.textio.all;
+use work.riscv_pkg.all;
 
-entity rom_rv is
+
+entity rom is
    port (
      address : in std_logic_vector;
      dataout : out std_logic_vector
    );
-end entity rom_rv;
+end entity rom;
 
 
-architecture a of rom_rv is
+architecture a of rom is
   Type rom_type is array (0 to (2**address'length)-1) of std_logic_vector(dataout'range);
   
   impure function init_rom_hex return rom_type is

@@ -6,10 +6,11 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+use work.riscv_pkg.all;
 
 
 
-entity ulaRV is
+entity ULA is
 
 generic (WSIZE : natural := 32);
 
@@ -18,10 +19,10 @@ port (
 	A, B : in std_logic_vector(WSIZE-1 downto 0);
 	Z : out std_logic_vector(WSIZE-1 downto 0);
 	zero : out std_logic);
-end ulaRV;
+end ULA;
 
 
-architecture behavioral of ulaRV is
+architecture behavioral of ULA is
 	signal a32 : std_logic_vector(31 downto 0);
 	constant ADD_OP : std_logic_vector(3 downto 0) := "0000";
     constant SUB_OP : std_logic_vector(3 downto 0) := "0001";
