@@ -60,6 +60,7 @@ architecture rtl of processador is
 	
 	-- Gerador_imediato
 	signal imm_result				: signed(31 downto 0) := X"00000000";
+	signal imm_shiftado_1		: std_logic_vector(31 downto 0) := X"00000000";
 	
     --Controle ULA
     alias funct3: std_logic_vector (3 downto 0) is instruction (14 downto 12);   
@@ -108,6 +109,18 @@ rom: entity work.rom port map(
     dataout => instruction 
 );
 
+	entrada_A => pc_out,
+	entrada_B => x"00000004",
+	saida => pc_4
+	
+);
 
+somador2: entity work.somador port map(
+	
+	entrada_A => pc_out,
+	entrada_B => imm_shiftado_1,
+	saida => pc_branch
+	
+);
 
 end    
