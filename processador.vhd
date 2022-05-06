@@ -98,20 +98,21 @@ ULA: entity work.ULA port map(
 );
 	
 controlULA: entity work.controlULA port map(
-	opin		=> imm,
-	ALUOp 	=> ALUOp,
-	opout		=> op
+	funct7	=> funct7,
+	funct3 	=> funct3,
+	aluop	=> ALUop,
+	aluctr => controlULA_result
 );
 
 pc: entity work.pc port map(	
-    -- sinais do pc => sinais do processador 
+    
     pc_in	=> pc_in,
     pc_out => pc_out,
     clock 		=> clockgeral    
 );
 
 rom: entity work.rom port map(	
-    -- sinais do pc => sinais do processador 
+     
     adress	=> resize(signed(pc_out),12),
     dataout => instruction 
 );
