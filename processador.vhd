@@ -96,6 +96,13 @@ ULA: entity work.ULA port map(
 	zero 		=> zero
 	
 );
+
+controlULA: entity work.controlULA port map(
+	funct7	=> funct7,
+	funct3 	=> funct3,
+	aluop	=> ALUop,
+	aluctr => controlULA_result
+);
 	
 
 pc: entity work.pc port map(	
