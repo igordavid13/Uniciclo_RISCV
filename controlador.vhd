@@ -1,16 +1,17 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.riscv_pkg.all;
 
-entity controlRV is
+entity controlador is
     generic (WSIZE : natural := 32);
     port(opcode: in std_logic_vector(6 downto 0);
 		 branch, memRead, memWrite, memToReg, regWrite, ALUsrc, jalr_jal_ctrl, auipc_jal_ctrl: out std_logic; 
 		 ALUop : out std_logic_vector (1 downto 0)
           );
-end controlRV;
+end controlador;
 
-architecture a of controlRV is
+architecture a of controlador is
 begin
   process_control: process(opcode) begin
     case unsigned(opcode) is

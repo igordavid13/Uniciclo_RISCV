@@ -16,7 +16,6 @@ architecture rtl of processador is
 	--Signals
 	
 	--ROM
-
 	signal instruction              : std_logic_vector(31 downto 0) := X"00000000";
 
 	-- PC
@@ -26,7 +25,6 @@ architecture rtl of processador is
 	signal pc_branch			    : std_logic_vector(31 downto 0) := X"00000000";
     signal pc_definitivo			: std_logic_vector(31 downto 0) := X"00000000";
 
-	
 	-- BREG
 	alias rd                        : std_logic_vector (4 downto 0) is instruction (11 downto 7);
     alias rs1                       : std_logic_vector (4 downto 0) is instruction (19 downto 15);
@@ -49,16 +47,13 @@ architecture rtl of processador is
 	signal ANDResult	           : std_logic := '0';
 
 	--imm_shift_1
-
 	signal result_shift              : std_logic_vector(31 downto 0) := X"00000000";
     
-    
-
 	-- RAM
 	signal read_data				: std_logic_vector(31 downto 0) := X"00000000";
 	signal saida_mux_ram            : std_logic_vector(31 downto 0) := X"00000000";
-	-- ULA
 
+	-- ULA
     signal ent_ula1                 : std_logic_vector(31 downto 0) := X"00000000";
     signal ent_ula2                 : std_logic_vector(31 downto 0) := X"00000000";
     signal zero                     : std_logic := '0';
@@ -77,6 +72,25 @@ architecture rtl of processador is
 
 begin
 
+controlador: entity work.controlador port map(
+	
+	opcode => opcode,
+	branch => branch,
+	memRead => memRead,
+	memWrite => memWrite, 
+	memToReg=> memToReg, 
+	regWrite=> regWrite, 
+	ALUsrc=> ALUsrc, 
+	jalr_jal_ctrl=> jalr_jal_ctrl  , 
+	auipc_jal_ctrl => auipc_jal_ctrl, 
+	ALUop => ALUop 
+);
+
+
+
+
+
+
 xreg: entity work.xreg port map(
 		
 	clk 		=> clock_geral,
@@ -84,7 +98,7 @@ xreg: entity work.xreg port map(
 	rst 		=> '0',
 	rs1 		=> rs1,
 	rs2 		=> rs2,
-	rd 		=> rd,
+	rd 		    => rd,
 	data 		=> data_rd,
 	ro1 		=> ro1,
 	ro2 		=> ro2
@@ -94,18 +108,18 @@ xreg: entity work.xreg port map(
 ULA: entity work.ULA port map(
 		
 	opcode 		=> controlULA_result,
-	A 		=> ent_ula1,
-	B 		=> ent_ula2,
-	Z 		=> ula_result,
+	A 		    => ent_ula1,
+	B 		    => ent_ula2,
+	Z 		    => ula_result,
 	zero 		=> zero
 	
 );
 
 controlULA: entity work.controlULA port map(
-	funct7	=> funct7,
-	funct3 	=> funct3,
-	aluop	=> ALUop,
-	aluctr => controlULA_result
+	funct7	   => funct7,
+	funct3 	   => funct3,
+	aluop	   => ALUop,
+	aluctr     => controlULA_result
 );
 
 
@@ -193,7 +207,7 @@ mux6: entity work.mux port map(
 	saida => data_rd
 );
 
-gerador_imm: entity work.genImm32 port map(
+genImm32: entity work.genImm32 port map(
 	
 	instr => instruction,
 	imm32 => imm_result	
