@@ -40,7 +40,7 @@ architecture rtl of processador is
 	signal ALUsrc		: std_logic := '0';
 	signal ALUop		: std_logic_vector(1 downto 0) := "00";
    	signal jalr_jal_ctrl : std_logic := '0';
-    	signal auipc_jal_ctrl : std_logic := '0';
+    signal auipc_jal_ctrl : std_logic := '0';
 	signal ANDResult	: std_logic := '0';
 
     --ROM
@@ -179,6 +179,12 @@ mux6: entity work.mux port map(
 	entrada_A => saida_mux_ram,
 	entrada_B => pc_4,
 	saida => data_rd
+);
+
+genImm32: entity work.genImm port map(
+	
+	instr => instruction,
+	imm32 => imm_result	
 );
 
 	
