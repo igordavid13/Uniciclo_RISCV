@@ -109,6 +109,8 @@ rom: entity work.rom port map(
     dataout => instruction 
 );
 
+
+somador1: entity work.somador port map(
 	entrada_A => pc_out,
 	entrada_B => x"00000004",
 	saida => pc_4
