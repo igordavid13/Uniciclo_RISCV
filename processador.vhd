@@ -70,6 +70,31 @@ architecture rtl of processador is
 
 begin
 
+xreg: entity work.xreg port map(
+		
+	clk 		=> clock_geral,
+	wren 		=> regWrite,
+	rst 		=> '0',
+	rs1 		=> rs1,
+	rs2 		=> rs2,
+	rd 		=> rd,
+	data 		=> data_rd,
+	ro1 		=> ro1,
+	ro2 		=> ro2
+	
+);
+	
+
+ULA: entity work.ULA port map(
+		
+	opcode 		=> opcode,
+	A 		=> ent_ula1,
+	B 		=> ent_ula2,
+	Z 		=> ula_result,
+	zero 		=> zero
+	
+);
+
 
 
 
