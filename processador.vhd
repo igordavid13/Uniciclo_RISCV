@@ -144,10 +144,10 @@ rom: entity work.rom port map(
 
 ram: entity work.ram port map(	
 	clock => clock_geral,
-        we => memWrite,
-        address => ula_result,
-        datain => ro2,
-        dataout => read_data
+    we => memWrite,
+    address => ula_result,
+    datain => ro2,
+    dataout => read_data
 );
 	
 somador1: entity work.somador port map(
