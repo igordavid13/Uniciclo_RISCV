@@ -39,9 +39,8 @@ architecture rtl of processador is
 	signal regWrite	: std_logic := '0';
 	signal ALUsrc		: std_logic := '0';
 	signal ALUop		: std_logic_vector(1 downto 0) := "00";
-   	signal jalr_jal_ctrl : std_logic := '0';
-    	signal auipc_jal_ctrl : std_logic := '0';
-	signal ANDResult	: std_logic := '0';
+    signal jalr_jal_ctrl : std_logic := '0';
+    signal auipc_jal_ctrl : std_logic := '0';
 
     --ROM
 
@@ -125,54 +124,8 @@ somador2: entity work.somador port map(
 	saida => pc_branch
 	
 );
-	
-mux1: entity work.mux port map(
-	
-	s => ANDResult,
-	entrada_A => pc_4,
-	entrada_B => pc_branch,
-	saida => pc_definitivo
-);
-	
-mux2: entity work.mux port map(
-	
-	s => jalr_jal_ctrl,
-	entrada_A => controlULA_result,
-	entrada_B => pc_definitivo,
-	saida => pc_in
-);
-	
-mux3: entity work.mux port map(
-	
-	s => memToReg,
-	entrada_A => controlULA_result,
-	entrada_B => read_data,
-	saida => saida_mux_ram
-);
-	
-mux4: entity work.mux port map(
-	
-	s => ALUsrc,
-	entrada_A => ro2,
-	entrada_B => imm_result,
-	saida => ent_ula2
-);
 
-mux5: entity work.mux port map(
-	
-	s => auipc_jal_ctrl,
-	entrada_A => ro1,
-	entrada_B => pc_out,
-	saida => ent_ula1
-);
 
-	
-mux6: entity work.mux port map(
-	
-	s => jalr_jal_ctrl,
-	entrada_A => saida_mux_ram,
-	entrada_B => pc_4,
-	saida => data_rd
-);
-	
+
+
 end    
