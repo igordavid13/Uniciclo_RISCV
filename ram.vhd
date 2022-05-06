@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity ram_rv is
+entity ram is
    port (
        clock : in std_logic;
        we : in std_logic;
@@ -10,10 +10,10 @@ entity ram_rv is
        datain : in std_logic_vector;
        dataout : out std_logic_vector
    );
-end entity ram_rv;
+end entity ram;
 
 
-architecture a of ram_rv is
+architecture a of ram is
   Type ram_type is array (0 to (2**address'length)-1) of 	std_logic_vector(datain'range);
   signal ram : ram_type;
   signal read_address : std_logic_vector(address'range);
