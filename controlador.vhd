@@ -6,7 +6,14 @@ use work.riscv_pkg.all;
 entity controlador is
     generic (WSIZE : natural := 32);
     port(opcode: in std_logic_vector(6 downto 0);
-		 branch, memRead, memWrite, memToReg, regWrite, ALUsrc, jalr_jal_ctrl, auipc_jal_ctrl: out std_logic; 
+		 branch, 
+     memRead, 
+     memWrite, 
+     memToReg,
+     regWrite,
+     ALUsrc,
+     jalr_jal_ctrl,
+     auipc_jal_ctrl: out std_logic:='0'; 
 		 ALUop : out std_logic_vector (1 downto 0)
           );
 end controlador;

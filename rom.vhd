@@ -17,7 +17,7 @@ architecture a of rom is
   Type rom_type is array (0 to (2**address'length)-1) of std_logic_vector(dataout'range);
   
   impure function init_rom_hex return rom_type is
-  file text_file : text open read_mode is "C:\Users\igord\Desktop\7_SEMESTRE\OAC\PROJETO FINAL - UNICICLO\GIT\Uniciclo_RISCV\teste_arquivo.txt";  --Caminho pro arquivp
+  file text_file : text open read_mode is "C:\Users\igord\Desktop\7_SEMESTRE\OAC\PROJETO FINAL - UNICICLO\GIT\Uniciclo_RISCV\teste_arquivo.txt";  --Caminho pro arquivo
   variable text_line : line;
   variable rom_content : rom_type;
   variable i : natural := 0; 
@@ -34,6 +34,6 @@ end function;
   begin
      process (address)
     	begin
-        	dataout <= rom(to_integer(unsigned(address)));
+        	dataout <= rom(to_integer(unsigned(address)/4));
     end process;
 end a;

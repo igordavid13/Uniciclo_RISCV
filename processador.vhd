@@ -72,6 +72,12 @@ architecture rtl of processador is
 
 begin
 
+process(clock_geral)
+begin
+end process;
+
+
+
 controlador: entity work.controlador port map(
 	
 	opcode => opcode,
@@ -145,7 +151,7 @@ rom: entity work.rom port map(
 ram: entity work.ram port map(	
 	clock => clock_geral,
     we => memWrite,
-    address => ula_result,
+    address => ula_result(11 downto 0),
     datain => ro2,
     dataout => read_data
 );

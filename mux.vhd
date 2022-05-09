@@ -13,14 +13,17 @@ entity MUX is
 	);
 end MUX;
 
-architecture a of MUX is
-	
-	begin
-    	proc_mux : process (s, entrada_A, entrada_B) begin
-          if (s = '0') then
-              saida <= entrada_A;
-          else
-              saida <= entrada_B;
-          end if;
-		end process proc_mux;
+architecture a of MUX is	
+	begin 
+		p_mux : process(s,entrada_A,entrada_B)
+		begin
+		  case s is
+			when '0' => 
+				saida <= entrada_A ;
+			when '1' => 	
+				saida <= entrada_B ;
+			when others => 
+				saida <= X"00000000";
+		  end case;
+		end process p_mux;	
 end a;

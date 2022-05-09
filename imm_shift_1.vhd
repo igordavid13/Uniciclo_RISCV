@@ -11,7 +11,7 @@ entity imm_shift_1 is
     
     port (
         entrada : in std_logic_vector(WSIZE-1 downto 0);
-        saida : out std_logic_vector(WSIZE-1 downto 0));
+        saida : out std_logic_vector(WSIZE-1 downto 0) := X"00000000");
     end imm_shift_1;
     
     architecture behavioral of imm_shift_1 is

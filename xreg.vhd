@@ -16,17 +16,18 @@ end xreg;
 
 architecture behavioral of xreg is
     type registerFile is array(0 to WSIZE-1) of std_logic_vector(WSIZE-1 downto 0);
-    signal registers : registerFile;
+    signal registers : registerFile := (others => (others => '0')); --Inicializa todos os registradores zerados
+
     begin
          regFile : process (clk) is
           begin
+            ro1 <= registers(to_integer(unsigned(rs1)));
+            ro2 <= registers(to_integer(unsigned(rs2)));
             if(rst = '1') then
                 for I in 0 to WSIZE-1 loop
                     registers(I) <= X"00000000";
                 end loop;
-                   elsif rising_edge(clk) then
-                ro1 <= registers(to_integer(unsigned(rs1)));
-                ro2 <= registers(to_integer(unsigned(rs2)));
+                   elsif rising_edge(clk) then       
                         if(wren = '1' and (to_integer(unsigned(rd))) > 0) then
                             registers(to_integer(unsigned(rd))) <= data;
                        end if;

@@ -12,7 +12,9 @@ end genImm32;
 
 architecture a of genImm32 is
   signal  aux :  signed(31 downto 0);
-	begin    
+  
+	begin
+    imm32 <= Std_logic_vector(aux);     
     process(instr) is
       begin
       case (resize(UNSIGNED(instr(6 downto 0)), 8)) is
@@ -34,7 +36,7 @@ architecture a of genImm32 is
         when others =>       -- Mop up the rest
         	null;              -- no action, no assignments made
         end case;
-        imm32 <= Std_logic_vector(aux); 
+        
     end process;    
 
 end a;
