@@ -19,10 +19,10 @@ architecture behavioral of xreg is
     signal registers : registerFile := (others => (others => '0')); --Inicializa todos os registradores zerados
 
     begin
+        ro1 <= registers(to_integer(unsigned(rs1)));
+        ro2 <= registers(to_integer(unsigned(rs2)));
          regFile : process (clk) is
-          begin
-            ro1 <= registers(to_integer(unsigned(rs1)));
-            ro2 <= registers(to_integer(unsigned(rs2)));
+          begin            
             if(rst = '1') then
                 for I in 0 to WSIZE-1 loop
                     registers(I) <= X"00000000";

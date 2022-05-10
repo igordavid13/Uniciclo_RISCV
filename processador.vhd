@@ -150,8 +150,9 @@ rom: entity work.rom port map(
 
 ram: entity work.ram port map(	
 	clock => clock_geral,
-    we => memWrite,
-    address => ula_result(11 downto 0),
+    memWrite => memWrite,
+	memRead => memRead,
+    address => ula_result(13 downto 2), 
     datain => ro2,
     dataout => read_data
 );
