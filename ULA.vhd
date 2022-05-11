@@ -44,7 +44,7 @@ architecture behavioral of ULA is
 begin
 	Z <= a32;
 	proc_ula : process (A,B,opcode,a32) begin
-		if(a32 = X"00000000") then zero <= '1'; else zero <= '0'; end if;
+		if(a32 = X"00000001") then zero <= '1'; else zero <= '0'; end if;
 		case opcode is
 			when ADD_OP => 
 				a32 <= std_logic_vector(signed(A) + signed(B));

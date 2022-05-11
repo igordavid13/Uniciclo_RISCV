@@ -76,7 +76,7 @@ process(clock_geral)
 begin
 end process;
 
-
+ANDresult <= branch and zero;
 
 controlador: entity work.controlador port map(
 	

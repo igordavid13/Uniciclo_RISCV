@@ -17,6 +17,7 @@ entity imm_shift_1 is
     architecture behavioral of imm_shift_1 is
     begin    
         process(entrada) begin
-            saida <= entrada(30 downto 0) & '0';
+            --saida <= entrada(30 downto 0) & '0';
+            saida <= entrada;
     end process;
 end architecture behavioral;

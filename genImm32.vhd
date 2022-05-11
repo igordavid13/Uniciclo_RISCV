@@ -12,8 +12,10 @@ end genImm32;
 
 architecture a of genImm32 is
   signal  aux :  signed(31 downto 0);
+  signal func3 : std_logic_vector(2 downto 0);
   
 	begin
+    func3 <= instr(14 downto 12);
     imm32 <= Std_logic_vector(aux);     
     process(instr) is
       begin
@@ -21,7 +23,11 @@ architecture a of genImm32 is
         when (X"33") =>            -- R_type
         	aux <= resize((X"00000000"), 32);
      	  when (X"03") | (X"13") | (X"67") =>     --I_type
-     		aux <= resize(signed(instr(31 downto 20)), 32);    
+         if func3 = "101" then --SRAI e SRLI
+			    aux <= signed(resize(signed(instr(24 downto 20)), 32));
+			  else
+			    aux <= signed(resize(signed(instr(31 downto 20)), 32));
+			  end if;  
         when (X"23") =>            -- S_type
         	aux <= resize(signed(instr(31 downto 25) & instr(11 downto 7)), 32);
         when (X"63") =>            -- SB_type
