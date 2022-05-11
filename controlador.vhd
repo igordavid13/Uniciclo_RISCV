@@ -96,7 +96,7 @@ begin
 		  jalr_jal_ctrl <= '0';
  		  auipc_jal_ctrl <= '0';
 
---I 
+--I Operações aritméticas com imediato
 	when "0010011" =>
                   ALUsrc <= '1';
                   memToReg <= '0';
