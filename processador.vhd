@@ -41,7 +41,7 @@ architecture rtl of processador is
 	signal memToReg	               : std_logic := '0';
 	signal regWrite	               : std_logic := '0';
 	signal ALUsrc		           : std_logic := '0';
-	signal ALUop		           : std_logic_vector(1 downto 0) := "00";
+	signal ALUop		           : std_logic_vector(2 downto 0) := "000";
    	signal jalr_jal_ctrl           : std_logic := '0';
     signal auipc_jal_ctrl          : std_logic := '0';
 	signal ANDResult	           : std_logic := '0';

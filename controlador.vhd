@@ -14,7 +14,7 @@ entity controlador is
      ALUsrc,
      jalr_jal_ctrl,
      auipc_jal_ctrl: out std_logic:='0'; 
-		 ALUop : out std_logic_vector (1 downto 0)
+		 ALUop : out std_logic_vector (2 downto 0)
           );
 end controlador;
 
@@ -32,7 +32,7 @@ begin
                   memWrite <= '0';
                   memRead <= '0';
                   branch <= '1';
-                  ALUop <= "01";
+                  ALUop <= "001";
 		  jalr_jal_ctrl <= '0';
  		  auipc_jal_ctrl <= '0';
 
@@ -44,7 +44,7 @@ begin
                   memWrite <= '0';
                   memRead <= '0';
                   branch <= '0';
-                  ALUop <= "10";
+                  ALUop <= "010";
 		  jalr_jal_ctrl <= '0';
  		  auipc_jal_ctrl <= '0';
 
@@ -56,7 +56,7 @@ begin
                   memWrite <= '0';
                   memRead <= '0';
                   branch <= '1';
-                  ALUop <= "00";
+                  ALUop <= "000";
 		  jalr_jal_ctrl <= '1';
  		  auipc_jal_ctrl <= '1';
 
@@ -68,7 +68,7 @@ begin
                   memWrite <= '0';
                   memRead <= '0';
                   branch <= '1';
-                  ALUop <= "00";
+                  ALUop <= "000";
 		  jalr_jal_ctrl <= '1';
  		  auipc_jal_ctrl <= '0';
 
@@ -80,7 +80,7 @@ begin
                   memWrite <= '0';
                   memRead <= '0';
                   branch <= '0';
-                  ALUop <= "00";
+                  ALUop <= "000";
 		  jalr_jal_ctrl <= '0';
  		  auipc_jal_ctrl <= '1';
 
@@ -92,7 +92,7 @@ begin
                   memWrite <= '0';
                   memRead <= '0';
                   branch <= '0';
-                  ALUop <= "11";
+                  ALUop <= "011";
 		  jalr_jal_ctrl <= '0';
  		  auipc_jal_ctrl <= '0';
 
@@ -104,7 +104,7 @@ begin
                   memWrite <= '0';
                   memRead <= '0';
                   branch <= '0';
-                  ALUop <= "10";
+                  ALUop <= "111";
 		  jalr_jal_ctrl <= '0';
  		  auipc_jal_ctrl <= '0';
 
@@ -116,7 +116,7 @@ begin
                   memWrite <= '0';
                   memRead <= '1';
                   branch <= '0';
-                  ALUop <= "00";
+                  ALUop <= "000";
 		  jalr_jal_ctrl <= '0';
  		  auipc_jal_ctrl <= '0';
 
@@ -128,7 +128,7 @@ begin
                   memWrite <= '1';
                   memRead <= '0';
                   branch <= '0';
-                  ALUop <= "00";
+                  ALUop <= "000";
 		  jalr_jal_ctrl <= '0';
  		  auipc_jal_ctrl <= '0';
 
@@ -141,7 +141,7 @@ begin
                   memWrite <= '0';
                   memRead <= '0';
                   branch <= '0';
-                  ALUop <= "00";
+                  ALUop <= "100";
       end case;   
   end process;
 end a;

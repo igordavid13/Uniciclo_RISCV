@@ -6,7 +6,7 @@ use work.riscv_pkg.all;
 entity controlULA is
   port ( funct7 : in std_logic_vector(6 downto 0);
       funct3 : in std_logic_vector(2 downto 0);
-       aluop : in std_logic_vector(1 downto 0);
+       aluop : in std_logic_vector(2 downto 0);
       aluctr : out std_logic_vector(3 downto 0));
 end entity;
 
@@ -15,11 +15,11 @@ begin
     process(funct7, funct3, aluop) begin
      case aluop is
 
-         when "00" => -- LW, SW, JAL, JALR and AUIPC
+         when "000" => -- LW, SW, JAL, JALR and AUIPC
          	aluctr <= "0000";
 
 
-         when "01" => -- Branch
+         when "001" => -- Branch
          	case funct3 is
             	-- BEQ
         		when "000" =>
@@ -42,7 +42,7 @@ begin
 				when others => null;	
 			 end case;		
                     
-         when "10" => -- Operações aritméticas
+         when "010" => -- Operações aritméticas
          	case funct3 is
         		when "000" =>
                   	   if (funct7(5)='1')
@@ -64,11 +64,41 @@ begin
                   	else 
                       	aluctr <= "0110"; --SRL
                   	end if;
+				when "010" =>  
+					aluctr <= "1000"; --SLT
+				when "011" => 	 
+					aluctr <= "1001"; --SLTU
+
 				when others => null;		  
 			end case;		  
 
-		when "11" => -- Lui
+		when "011" => -- Lui
 			aluctr <= "1110"; --LUI
+
+		when "111"=> --Operaçõesa aritméticas com imediato
+		case funct3 is
+			when "000" =>
+				aluctr <= "0000"; --ADDi
+			when "111" =>
+				aluctr <= "0010"; --ANDi
+			when "110" =>
+				aluctr <= "0011"; --ORi
+			when "100" =>
+				aluctr <= "0100"; --XORi
+			when "001" =>
+				aluctr <= "0101"; --SLLi
+			when "101" =>
+				if (funct7(5)='1')
+					  then aluctr <= "0111"; --SRAi
+				  else 
+					  aluctr <= "0110"; --SRLi
+				  end if;
+			when "010" =>
+				aluctr <= "1000"; --slti
+			when "011" => 	 
+				aluctr <= "1001"; --SLTUi	
+			when others => null;		  
+		end case;	
 			
 		when others => null;	  	      		
     end case;
